@@ -1,0 +1,17 @@
+Does local temperature add anything once the time trend is included?
+(ML / REML = FALSE; n = 694 specimens, 37 localities.)
+
+-- age + PReSto local temperature --
+              Estimate Std. Error t value
+(Intercept)    664.775     16.910  39.314
+z(age_bp)      122.085     27.666   4.413
+z(presto_tas)   14.074     22.215   0.634
+
+LRT  age  vs  age + PReSto temp:  dAIC = +1.60,  p = 0.527
+PReSto temp alone: t = -3.90 (negative); controlling for time: t = 0.63 (sign reverses, n.s.).
+
+-- the design is essentially cross-sectional --
+age varies within a locality in 0 of 37 localities;
+PReSto temperature varies within a locality in 4 of 37 localities.
+specimen-level cor(age, PReSto temp) = -0.89  -> age and local temperature are strongly collinear,
+so this comparison reflects differences between time-specific localities, not a within-site temporal test.

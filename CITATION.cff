@@ -1,0 +1,113 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using the metadata below. Additionally,
+  please cite the underlying paleoclimate data sources listed in data_references.bib
+  (113 publications across 172 datasets) and the lipdverse compilation.
+title: PReSto Holocene DA reconstruction and bison body-size case study
+abstract: A custom Holocene temperature reconstruction for North America and the
+  paleoecological analysis it was built for, prepared for the PReSto Workshop (June
+  2026). Using the PReSto (Paleoclimate Reconstruction Storehouse) Custom Reconstruction
+  Engine, it reproduces the offline paleoclimate data-assimilation method of Erb et al.
+  (2022) via GitHub Actions — acquiring Temp12k proxy observations from LiPDverse,
+  constructing a model prior from transient climate simulations (HadCM3 and TraCE-21ka),
+  and reconstructing spatially complete annual-mean temperature fields over the past
+  12,000 years. The accompanying analysis (see analysis/) weighs the thermal hypothesis
+  for Holocene bison body-size diminution against the broader set of competing
+  explanations (forage productivity and quality, density, and human hunting; cf. Hill
+  et al. 2008), and finds that body size tracks time more than local temperature. Built
+  on the PReSto Holocene DA template by D. Edge, M. Erb, N. McKay, D. Khider and
+  J. Emile-Geay.
+type: software
+authors:
+- given-names: John A. F.
+  family-names: Wendt
+  affiliation: New Mexico State University
+- given-names: David
+  family-names: Edge
+  orcid: https://orcid.org/0000-0001-6938-2850
+- given-names: Nicholas
+  family-names: McKay
+  orcid: https://orcid.org/0000-0003-3598-5113
+- given-names: Michael
+  family-names: Erb
+  orcid: https://orcid.org/0000-0002-1763-2522
+- given-names: Julien
+  family-names: Emile-Geay
+  orcid: https://orcid.org/0000-0001-5920-4751
+- given-names: Deborah
+  family-names: Khider
+  orcid: https://orcid.org/0000-0001-7501-8430
+repository-code: https://github.com/DaveEdge1/presto-holocene_da
+url: https://paleopresto.com
+license: GPL-3.0-only
+keywords:
+- paleoclimate
+- data assimilation
+- Holocene
+- climate reconstruction
+- reproducibility
+- LiPD
+references:
+- type: article
+  title: Reconstructing Holocene temperatures in time and space using paleoclimate
+    data assimilation
+  authors:
+  - given-names: Michael
+    family-names: Erb
+  - given-names: Nicholas
+    family-names: McKay
+  - given-names: Nathan
+    family-names: Steiger
+  - given-names: Sylvia
+    family-names: Dee
+  - given-names: Chris
+    family-names: Hancock
+  - given-names: Ruza
+    family-names: Ivanovic
+  - given-names: Lauren
+    family-names: Gregoire
+  - given-names: Paul
+    family-names: Valdes
+  journal: Climate of the Past
+  volume: 18
+  issue: 12
+  start: 2599
+  end: 2629
+  year: 2022
+  doi: 10.5194/cp-18-2599-2022
+- type: article
+  title: "Bison body size and climate change"
+  authors:
+  - given-names: Jeff M.
+    family-names: Martin
+  - given-names: Jim I.
+    family-names: Mead
+  - given-names: Perry S.
+    family-names: Barboza
+  journal: Ecology and Evolution
+  volume: 8
+  issue: 9
+  start: 4564
+  end: 4574
+  year: 2018
+  doi: 10.1002/ece3.4019
+  notes: Source of the bison body-size dataset and the Greenland (GISP2) temperature predictor.
+- type: article
+  title: "Late Quaternary Bison diminution on the Great Plains of North America: evaluating
+    the role of human hunting versus climate change"
+  authors:
+  - given-names: Matthew E.
+    family-names: Hill
+  - given-names: Matthew G.
+    family-names: Hill
+  - given-names: Christopher C.
+    family-names: Widga
+  journal: Quaternary Science Reviews
+  volume: 27
+  issue: 17-18
+  start: 1752
+  end: 1771
+  year: 2008
+  doi: 10.1016/j.quascirev.2008.07.002
+- type: generic
+  title: Source paleoclimate data bibliography
+  notes: 113 publications across 172 datasets in data_references.bib

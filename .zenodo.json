@@ -1,0 +1,39 @@
+{
+  "title": "PReSto Holocene DA reconstruction and bison body-size case study",
+  "upload_type": "software",
+  "license": "GPL-3.0-only",
+  "creators": [
+    {
+      "name": "Wendt, John A. F.",
+      "affiliation": "New Mexico State University"
+    }
+  ],
+  "contributors": [
+    { "name": "Edge, David", "type": "Other", "affiliation": "PReSto", "orcid": "0000-0001-6938-2850" },
+    { "name": "Erb, Michael", "type": "Other", "affiliation": "Northern Arizona University", "orcid": "0000-0002-1763-2522" },
+    { "name": "McKay, Nicholas", "type": "Other", "affiliation": "Northern Arizona University", "orcid": "0000-0003-3598-5113" },
+    { "name": "Khider, Deborah", "type": "Other", "affiliation": "University of Southern California", "orcid": "0000-0001-7501-8430" },
+    { "name": "Emile-Geay, Julien", "type": "Other", "affiliation": "University of Southern California", "orcid": "0000-0001-5920-4751" }
+  ],
+  "keywords": [
+    "paleoclimate",
+    "data assimilation",
+    "Holocene",
+    "paleoecology",
+    "bison",
+    "body size",
+    "Bergmann's rule",
+    "Temp12k",
+    "North America",
+    "PReSto"
+  ],
+  "description": "<p>A custom Holocene (0&ndash;12,000 cal BP) annual-mean surface-temperature reconstruction for North America, produced with the <a href=\"https://paleopresto.com\">PReSto</a> Custom Reconstruction Engine &mdash; the offline paleoclimate data-assimilation method of Erb et al. (2022): Temp12k proxies assimilated into a HadCM3 + TraCE-21ka model prior, 100-yr steps, 104-member ensemble &mdash; together with the paleoecological analysis it was built for.</p><p>The diminution of North American bison body size through the Late Quaternary has several competing explanations &mdash; thermal (Bergmann's rule), forage productivity and quality, population density, and human hunting (e.g. Hill et al. 2008). This case study isolates the thermal hypothesis and tests it with temperature represented as accurately as possible in space and time. Assigning each of 694 Holocene bison specimens (body-size data from Martin et al. 2018) a local, observation-constrained temperature sampled from this reconstruction, the data-assimilation field proves the most informative of three temperature representations (the others being the Greenland GISP2 series and a free-running TraCE field) &mdash; yet no temperature formulation explains body size beyond a secular Holocene trend, and there is no spatial Bergmann cline. Holocene bison body size tracks <em>time</em> more than <em>temperature</em>, pointing toward the non-thermal hypotheses (forage/productivity, density) as the open question. Prepared for the PReSto Workshop, June 2026.</p><p>Built on the PReSto Holocene DA template by D. Edge, M. Erb, N. McKay, D. Khider &amp; J. Emile-Geay; reconstruction method from Erb et al. (2022). See CITATION.cff and NOTICE for full provenance and the underlying proxy data citations.</p>",
+  "related_identifiers": [
+    { "relation": "isDerivedFrom", "identifier": "10.5194/cp-18-2599-2022", "scheme": "doi", "resource_type": "publication-article" },
+    { "relation": "references", "identifier": "10.1002/ece3.4019", "scheme": "doi", "resource_type": "publication-article" },
+    { "relation": "references", "identifier": "10.1016/j.quascirev.2008.07.002", "scheme": "doi", "resource_type": "publication-article" },
+    { "relation": "references", "identifier": "10.5281/zenodo.7407116", "scheme": "doi", "resource_type": "dataset" },
+    { "relation": "isCompiledBy", "identifier": "https://paleopresto.com", "scheme": "url" },
+    { "relation": "isDerivedFrom", "identifier": "https://github.com/Holocene-Reconstruction/Holocene-code", "scheme": "url" }
+  ]
+}
