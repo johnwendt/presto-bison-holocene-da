@@ -1,0 +1,11 @@
+                      model  AIC       R2m  dAIC
+                 age (time) 8682 0.3460798  0.00
+         age + paleo precip 8683 0.3535814  1.02
+          age + PReSto temp 8683 0.3539492  1.60
+       age + GISP Greenland 8684 0.3424684  1.95
+           PReSto temp (DA) 8698 0.1237260 16.37
+ PReSto temp + paleo precip 8700 0.1227284 18.34
+ PReSto temp x paleo precip 8702 0.1399820 19.89
+            GISP2 Greenland 8705 0.0379246 22.91
+ Paleo-BioClim temp (TraCE) 8710 0.0001488 28.33
+        paleo Tmax x precip 8710 0.0398327 28.53
