@@ -21,14 +21,15 @@ needs only `dplyr`, `ggplot2`, `tidyr`, `lme4`, `patchwork` (and optionally
 
 | Path | What |
 |---|---|
-| `reproduce.R` | Portable entry point: models + figures from the joined CSV |
+| `reproduce.R` | Portable entry point: models + the five body-size figures from the joined CSV |
+| `make_recon_map.R` | 6 ka temperature-anomaly map with body-size localities; needs the reconstruction NetCDF (`recon-26968202830` release asset, via `PRESTO_NC`) |
 | `scripts/01_prep_bodysize.R` | Read Martin et al. (2018) supplement; build the Holocene specimen table |
 | `scripts/02_extract_refit.R` | Sample this reconstruction's temperature at each specimen (lat/lon/age) |
 | `scripts/03_bioclim_compare.R` | Add Greenland + TraCE paleo-bioclim temperatures; fit/compare models |
 | `scripts/04_timeconflation_fig.R` | Body mass vs. age and two temperatures (age axis reversed) |
 | `data/bison_holocene_with_bioclim.csv` | Joined per-specimen data (mass, coords, age, all three temperatures, paleo precip) |
 | `data/bison_holocene_specimens.csv` | Holocene specimen table (pre-extraction) |
-| `figures/` | Output figures (see `SLIDES.md` for which goes where) |
+| `figures/` | `recon_map_6ka` (reconstruction + localities), `eda_mass_vs_age`, `fig_3panel_temp`, `fig_timeconflation`, `fig_model_comparison`, `fig_extracted_temp` (local temperature ±ensemble SD), `fig_age_confound` |
 | `results/` | Model-comparison and coefficient tables |
 | `SLIDES.md` | 6-slide workshop talk (methods + results) |
 

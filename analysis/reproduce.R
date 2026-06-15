@@ -81,8 +81,7 @@ ggsave("figures/fig_3panel_temp.png",
     geom_point(aes(colour=age_ka), alpha=.55, size=1) + geom_smooth(method="lm", colour="black", linewidth=.7) +
     scale_colour_viridis_c("Age (ka)", direction=-1) + facet_wrap(~source) +
     labs(x="Temperature (standardized, SD units)", y="Body mass (kg)",
-         title="Bison body mass vs. three temperature estimates",
-         subtitle="n = 694 (0–12 ka). Points coloured by specimen age; black line = OLS fit."),
+         title="Bison body mass vs. three temperature estimates"),
   width=11, height=4.4, dpi=150)
 
 # ---- Fig 2: model comparison -------------------------------------------------
@@ -91,8 +90,7 @@ ggsave("figures/fig_model_comparison.png",
   ggplot(t2, aes(dAIC, model, fill=dAIC)) +
     geom_col(width=.72) + geom_text(aes(label=sprintf("R²m=%.2f", R2m)), hjust=-0.12, size=3.4) +
     scale_fill_viridis_c(guide="none") + xlim(0, max(t2$dAIC)*1.28) +
-    labs(x="ΔAIC (0 = best)", y=NULL, title="Predictors of Holocene bison body mass — model comparison",
-         subtitle="ML mixed models (random intercept by locality); n = 694; predictors z-scored; labels = marginal R²."),
+    labs(x="ΔAIC (0 = best)", y=NULL, title="Predictors of Holocene bison body mass"),
   width=9.6, height=4.4, dpi=150)
 
 # ---- Fig 3: time-conflation (age axis reversed: 0 ka on right) ----------------
@@ -103,8 +101,41 @@ base <- function(df,x,xlab,rev=FALSE){ p <- ggplot(df, aes(.data[[x]], mass_kg))
 fig <- (base(d,"age_ka","Age (ka cal BP)",TRUE) | (base(d,"presto_tas","PReSto DA temp anomaly (°C)")+labs(y=NULL)) |
         (base(d,"gisp_temp","Greenland GISP2 temp (°C)")+labs(y=NULL))) +
   plot_layout(guides="collect") +
-  plot_annotation(title="Bison body mass vs. age and two temperature estimates",
-                  subtitle="n = 694 (0–12 ka). Points coloured by specimen age; black line = OLS fit.") &
+  plot_annotation(title="Bison body mass vs. age and two temperature estimates") &
   theme(legend.position="right")
 ggsave("figures/fig_timeconflation.png", fig, width=11, height=4.2, dpi=150)
-cat("Done — figures in figures/, model table in results/model_comparison.txt\n")
+
+# ---- Fig 4: reconstructed local temperature through time (with ensemble SD) ---
+loc <- d |> group_by(locality) |>
+  summarise(age_bp=first(age_bp), presto_tas=first(presto_tas),
+            presto_sd=first(presto_sd), lat=first(lat), .groups="drop")
+ggsave("figures/fig_extracted_temp.png",
+  ggplot(loc, aes(age_bp, presto_tas)) +
+    geom_errorbar(aes(ymin=presto_tas-presto_sd, ymax=presto_tas+presto_sd),
+                  colour="grey75", width=0, na.rm=TRUE) +
+    geom_point(aes(colour=lat), size=2) + scale_x_reverse() +
+    scale_colour_viridis_c("Latitude (°N)") +
+    labs(x="Age (yr cal BP)", y="Reconstructed local temperature anomaly (°C)",
+         title="Reconstructed local temperature through time (±ensemble SD)"),
+  width=8, height=4.6, dpi=150)
+
+# ---- Fig 5: body-mass R² vs. each predictor's shared variance with age --------
+r2age <- function(x) summary(lm(x ~ d$age_bp))$r.squared
+conf <- data.frame(
+  predictor = c("Age (time)","PReSto DA anomaly","Greenland GISP2","BioClim MAT (TraCE)"),
+  shared    = c(1, r2age(d$presto_tas), r2age(d$gisp_temp), r2age(d$bioclim_mat)),
+  r2m       = c(tab$R2m[tab$model=="age (time)"],          tab$R2m[tab$model=="PReSto temp (DA)"],
+                tab$R2m[tab$model=="GISP2 Greenland"],      tab$R2m[tab$model=="Paleo-BioClim temp (TraCE)"]),
+  hj        = c(1.12, -0.12, -0.12, -0.12))
+ggsave("figures/fig_age_confound.png",
+  ggplot(conf, aes(shared, r2m)) +
+    geom_smooth(method="lm", formula=y~x, se=FALSE, linetype="dashed", colour="grey70", linewidth=0.5) +
+    geom_point(size=3, colour="#2C7FB8") +
+    geom_text(aes(label=predictor, hjust=hj), vjust=-0.7, size=3.4) +
+    expand_limits(x=c(-0.05,1.18), y=c(0,0.40)) +
+    labs(x="Shared variance with age,  R²(predictor ~ age)",
+         y="Body-mass variance explained  (marginal R²)",
+         title="Body-mass variance explained vs. shared variance with age"),
+  width=7.4, height=5, dpi=150)
+
+cat("Done. Figures in figures/, tables in results/.\n")
