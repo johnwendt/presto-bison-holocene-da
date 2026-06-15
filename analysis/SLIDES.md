@@ -15,8 +15,6 @@ Figures live in `analysis/figures/`. Reproduce the models and figures with `repr
 - The catch: a single hemispheric proxy varies **only in time**, so *temperature* and *time* are perfectly confounded — any trait declining through the Holocene will correlate with it.
 - **Question:** does spatially-explicit, observation-constrained paleotemperature actually support a thermal driver of body size?
 
-> *Speaker note:* This 46% number gets cited as a climate-warming warning for large grazers. I tested whether the temperature signal is real or an artifact of the single-proxy design.
-
 ---
 
 ## 2 · A custom PReSto Holocene reconstruction
@@ -30,8 +28,6 @@ Built in the **PReSto Custom Engine** — Holocene paleoclimate **data assimilat
 - **Domain / time:** 0–12,000 cal BP, **100-yr steps (120 bins)**, anomalies vs 3–5 ka, ~2.8° grid
 - **Product:** gridded ensemble-mean temperature **+ per-cell uncertainty**, fully reproducible (config + repo + release-archived NetCDF)
 
-> *Speaker note:* DA blends proxies with a climate-model prior via a Kalman update — it yields a complete, uncertainty-quantified field that varies in **space and time**, which a single ice core cannot.
-
 ---
 
 ## 3 · Data & statistical approach
@@ -44,8 +40,6 @@ Built in the **PReSto Custom Engine** — Holocene paleoclimate **data assimilat
 - **Models:** linear mixed models, `mass ~ z(predictor) + (1 | locality)` (lme4); compared by **AIC** and **marginal/conditional R²** (MuMIn). Predictors z-scored.
 - **Species excluded as a predictor:** *antiquus/occidentalis/bison* are an anagenetic continuum and body size is itself a species-diagnostic character → conditioning on species is circular.
 
-> *Speaker note:* The random intercept handles multiple specimens per site. Marginal R² = variance explained by the climate predictor; conditional R² adds the locality effect.
-
 ---
 
 ## 4 · Result 1 — where vs. when
@@ -54,8 +48,6 @@ Built in the **PReSto Custom Engine** — Holocene paleoclimate **data assimilat
 - **Local temperature — where a bison actually lived — is flat.** cor(mass, latitude) = **−0.04**; cor(mass, local MAT) = **+0.04** → **no spatial Bergmann**: bison from colder *places* are not bigger.
 - Only the *time-tracking* temperatures slope (Greenland, PReSto), and the **age colour-gradient runs along the x-axis**.
 - cor(mass, **age**) = **+0.66** → the body-size variation is **temporal**, not spatial.
-
-> *Speaker note:* Body size doesn't care where it was warm. It only "responds" to temperatures that happen to track the calendar.
 
 ---
 
@@ -75,8 +67,6 @@ Built in the **PReSto Custom Engine** — Holocene paleoclimate **data assimilat
 - **Time wins.** No temperature source beats age. Constraint ladder works — **DA (PReSto) > free model (TraCE) > single proxy (Greenland)** — but all lose to time.
 - **Within/between decomposition** of PReSto temp: between-locality (spatial) effect t = −4.3 **but confounded with age (r = −0.89)**; within-locality (temporal) effect **null (t = 0.6)**.
 - Provisional paleo-precipitation does **not** improve fit (likelihood-ratio test *p* = 0.32) — no detectable moisture signal here.
-
-> *Speaker note:* PReSto's apparent temperature signal is entirely between time-specific localities, and that axis is age. Within a site, temperature change predicts nothing.
 
 ---
 
