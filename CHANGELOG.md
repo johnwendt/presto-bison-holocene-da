@@ -13,6 +13,24 @@ customizable template driven by PReSto.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## v1.1.0 - 2026-10-28
+
+### Added
+- `analysis/scripts/05_beyond_trend.R` and `analysis/results/beyond_trend.txt`:
+  temperature given age (DA and Greenland), latitude, spread across the 100
+  ensemble members, and a lagged-temperature test. These support the workshop
+  paragraph of the Presto paper (McKay et al., Sect. 3.5.3).
+
+### Changed
+- README, README_NOTES, `analysis/README.md` and `.zenodo.json`: headline result
+  restated with the ensemble range, the age-only R², the lag test and latitude.
+  "No spatial Bergmann cline" replaced, because the DA field is an anomaly field.
+
+### Withdrawn
+- TraCE paleo-bioclim temperature and paleo-precipitation results. The input
+  layers appear mis-computed. The `bioclim_*` columns remain in the joined data
+  for provenance only.
+
 ## v0.0.0 - 2026-06-04
 
 ### Added

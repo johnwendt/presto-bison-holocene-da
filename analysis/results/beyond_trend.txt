@@ -1,0 +1,18 @@
+n = 694 specimens, 37 localities (one age per locality). ML fits.
+
+age only: R2m = 0.35
+
+1. temperature added to age (likelihood-ratio p):
+   presto_tas  coef/SD =   14.1  p = 0.53
+   gisp_temp   coef/SD =   -2.8  p = 0.82
+
+2. latitude added to age: p = 0.83; cor(lat, mass) = -0.04
+
+3. 100 ensemble members: DA R2m median 0.12 (95% 0.04-0.20); temp-given-age p min 0.10, median 0.57
+
+4. lagged temperature (memory tau, kyr): dAIC vs age-only, R2m, p(lag | age), p(age | lag)
+   tau=0.5  dAIC=+15.9  R2m=0.14  p(lag|age)=0.42  p(age|lag)=0.000
+   tau=1.0  dAIC=+14.3  R2m=0.18  p(lag|age)=0.29  p(age|lag)=0.000
+   tau=2.0  dAIC=+14.3  R2m=0.18  p(lag|age)=0.17  p(age|lag)=0.000
+   tau=4.0  dAIC=+15.8  R2m=0.16  p(lag|age)=0.15  p(age|lag)=0.000
+   tau=8.0  dAIC=+17.4  R2m=0.14  p(lag|age)=0.16  p(age|lag)=0.000

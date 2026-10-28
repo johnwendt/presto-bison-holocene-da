@@ -27,10 +27,11 @@ needs only `dplyr`, `ggplot2`, `tidyr`, `lme4`, `patchwork` (and optionally
 | `scripts/02_extract_refit.R` | Sample this reconstruction's temperature at each specimen (lat/lon/age) |
 | `scripts/03_bioclim_compare.R` | Add Greenland + TraCE paleo-bioclim temperatures; fit/compare models |
 | `scripts/04_timeconflation_fig.R` | Body mass vs. age and two temperatures (age axis reversed) |
+| `scripts/05_beyond_trend.R` | Temperature given age, latitude, ensemble spread, lagged temperature (needs the reconstruction NetCDF; downloads it if absent) |
 | `data/bison_holocene_with_bioclim.csv` | Joined per-specimen data (mass, coords, age, all three temperatures, paleo precip) |
 | `data/bison_holocene_specimens.csv` | Holocene specimen table (pre-extraction) |
 | `figures/` | `recon_map_6ka` (reconstruction + localities), `eda_mass_vs_age`, `fig_3panel_temp`, `fig_timeconflation`, `fig_model_comparison`, `fig_extracted_temp` (local temperature ±ensemble SD), `fig_age_confound` |
-| `results/` | Model-comparison and coefficient tables |
+| `results/` | Model-comparison and coefficient tables; `beyond_trend.txt` from `scripts/05` |
 | `SLIDES.md` | 6-slide workshop talk (methods + results) |
 
 > The `scripts/` are provenance — they reference external raw data and have
@@ -46,21 +47,14 @@ needs only `dplyr`, `ggplot2`, `tidyr`, `lme4`, `patchwork` (and optionally
   (Temp12k → HadCM3 + TraCE-21ka; see repo root). Extracted from the release
   NetCDF; `scripts/02` auto-downloads it via the GitHub release.
 - **Greenland temperature:** GISP2 column in Martin et al. (their predictor).
-- **Paleo-bioclim (TraCE):** TraCE-21ka-derived 1-ka bioclim slices (external).
+- **Paleo-bioclim (TraCE):** TraCE-21ka-derived 1-ka bioclim slices (external). **Withdrawn in v1.1.0:** the layers appear mis-computed (mean annual temperature ≈ 23 °C at Denver; precipitation values that cannot be mm). The `bioclim_*` columns are kept for provenance only; results that use them (TraCE temperature, paleo-precipitation, Tmax × precip) should not be cited.
 
 ## Methods (brief)
 
 Each specimen is assigned a temperature three ways (Greenland proxy; TraCE
-paleo-bioclim; this reconstruction's DA anomaly). Body mass is modelled with
+paleo-bioclim, withdrawn in v1.1.0; this reconstruction's DA anomaly). Body mass is modelled with
 linear mixed models, `mass ~ z(temperature) + (1 | locality)`, compared by AIC
 and marginal/conditional R². Species is **excluded** as a predictor (anagenetic
 continuum; body size is itself species-diagnostic → circular).
 
-**Result:** body size tracks time more than temperature. Among the three temperature
-representations the observation-constrained DA field is the most informative, yet none
-improves on a simple time trend, and local temperature adds essentially nothing once
-time is included (LRT p = 0.53; see `results/time_vs_temperature.txt`). Precipitation
-adds no detectable signal; productivity / effective moisture remains an open question.
-Because the data are effectively cross-sectional — one age per locality, age and local
-temperature collinear (r ≈ −0.89) — this *bounds* the thermal signal rather than
-delivering a within-site temporal test. Full discussion in `../README_NOTES.md`.
+**Result:** body size tracks time more than temperature. The DA field explains more variance than the Greenland series on the ensemble mean (R²m 0.12 vs 0.04; 0.04–0.20 across ensemble members) but less than age alone (0.35). Neither temperature adds to a model with age (LRT p = 0.53 DA, 0.82 Greenland), nor does latitude (p = 0.83), and age outperforms temperature even with a lagged temperature effect of up to 8 kyr (ΔAIC ≥ 14). See `results/time_vs_temperature.txt` and `results/beyond_trend.txt`. Because the data are effectively cross-sectional (one age per locality; age and local temperature collinear, r ≈ −0.89), this *bounds* the thermal signal rather than delivering a within-site temporal test. Full discussion in `../README_NOTES.md`.
